@@ -4,7 +4,10 @@ Models
   =Has a description
   =Has many tags
   =Has many Tags
+  =Has a private/public designation
 - User
+  =Has a username
+  =Has a password
   =Has many bookmarks
   =Has many tags
 - Tag
