@@ -33,9 +33,12 @@
           </ul>
           <ul class="nav navbar-nav navbar-right">
               <li class="dropdown">
-                <a href="/login" class="dropdown-toggle" data-toggle="dropdown"><%= current_user if logged_in? %> <b class="caret"></b></a>
+                <% if logged_in? %>
+                  
+                  <a href="/login" class="dropdown-toggle" data-toggle="dropdown"><%= current_user %> Menu <span class="glyphicon glyphicon-cog"> </span></b></a>
+                <% end %>
               <ul class="dropdown-menu">
-                  <li><a href="/login/form">Login</a></li>
+                  <li><a href="/login/form">Placeholder</a></li>
                   <li class="divider"></li>
                   <li><a href="/logout">Logout</a></li>
               </ul>

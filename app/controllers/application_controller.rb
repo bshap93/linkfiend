@@ -12,8 +12,12 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
-    @bookmarks = Bookmark.all
-    erb :index
+    if logged_in?
+      @bookmarks = Bookmark.all
+      erb :index
+    else
+      redirect to "/login"
+    end
   end
 
 
@@ -22,9 +26,10 @@ class ApplicationController < Sinatra::Base
   end
 
   post "/signup" do
-    user = User.new(:username => params[:username], :password => params[:password], :balance => 0.0)
+    user = User.new(:username => params[:username], :password => params[:password])
     if user.save && !user.username.empty?
-      redirect "/login"
+      session[:user_id] = user.id
+      redirect "/"
     else
       redirect "/failure"
     end
@@ -46,7 +51,7 @@ class ApplicationController < Sinatra::Base
 
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect "/account"
+      redirect "/"
     else
       redirect "/failure"
     end

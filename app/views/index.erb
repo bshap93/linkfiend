@@ -1,8 +1,22 @@
-<h4>My Links</h4>
+<h4>All Links</h4>
 <% @bookmarks.each do |bookmark| %>
   <form method="POST" action="/bookmarks/:slug/edit" class="well">
     <a href="<%= bookmark.link %>"><%= bookmark.name %></a>
     <p>Created on <%= bookmark.created_at.to_s.split(" ")[0] %></p>
     <a class="btn btn-default" href="/bookmarks/<%= bookmark.slug %>/edit" role="button">Edit</a>
+    <a class="btn btn-default" href="/bookmarks/<%= bookmark.slug %>/delete" role="button">Delete</a>
+    <br>
+    <% if !bookmark.tags.empty? %>
+      <br><h5 style="display:inline">Tags</h5>
+      <% bookmark.tags.each do |tag| %>
+        <a href="tags/<%= tag.slug %>"><%= tag.name %></a>
+      <% end %>
+    <% end %>
+    <% if !bookmark.lists.empty? %>
+      <br><h5 style="display:inline">Lists this bookmark is in: </h5>
+      <% bookmark.lists.each do |list| %>
+        <a href="tags/<%= list.slug %>"><%= list.name %></a>
+      <% end %>
+    <% end %>
   </form>
 <% end %>
