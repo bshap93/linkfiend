@@ -1,0 +1,8 @@
+<h4>My Links</h4>
+<% @bookmarks.each do |bookmark| %>
+  <form method="POST" action="/bookmarks/:slug/edit" class="well">
+    <a href="<%= bookmark.link %>"><%= bookmark.name %></a>
+    <p>Created on <%= bookmark.created_at.to_s.split(" ")[0] %></p>
+    <a class="btn btn-default" href="/bookmarks/<%= bookmark.slug %>/edit" role="button">Edit</a>
+  </form>
+<% end %>

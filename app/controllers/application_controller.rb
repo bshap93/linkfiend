@@ -1,5 +1,6 @@
 class ApplicationController < Sinatra::Base
 
+  set :session_secret, "my_application_secret"
   set :views, Proc.new { File.join(root, "../views/") }
   register Sinatra::Twitter::Bootstrap::Assets
 
@@ -11,7 +12,8 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
-    erb :'/start/index'
+    @bookmarks = Bookmark.all
+    erb :index
   end
 
 
@@ -20,7 +22,6 @@ class ApplicationController < Sinatra::Base
   end
 
   post "/signup" do
-    #your code here
     user = User.new(:username => params[:username], :password => params[:password], :balance => 0.0)
     if user.save && !user.username.empty?
       redirect "/login"
@@ -41,7 +42,6 @@ class ApplicationController < Sinatra::Base
   end
 
   post "/login" do
-    ##your code here
     user = User.find_by(username: params[:username])
 
     if user && user.authenticate(params[:password])
