@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Sinatra + Twitter Bootstrap</title>
+    <title>linkfiend layout</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
@@ -27,25 +27,27 @@
           </button>
           <a class="navbar-brand" href="/" style="color:orange; font-family: monospace; font-size: 2.5em">linkfiend</a>
         </div>
-        <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="/secure/place">Secret</a></li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-              <li class="dropdown">
-                <% if logged_in? %>
+        <% if logged_in? %>
+          <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li><a href="/secure/place">Secret</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
                   
-                  <a href="/login" class="dropdown-toggle" data-toggle="dropdown"><%= current_user %> Menu <span class="glyphicon glyphicon-cog"> </span></b></a>
-                <% end %>
+                    
+                    <a href="/login" class="dropdown-toggle" data-toggle="dropdown"><%= current_user %> Menu <span class="glyphicon glyphicon-cog"> </span></b></a>
+
               <ul class="dropdown-menu">
                   <li><a href="/login/form">Placeholder</a></li>
                   <li class="divider"></li>
                   <li><a href="/logout">Logout</a></li>
               </ul>
             </li>
-
           </ul>
+        <% end %>
         </div><!--/.nav-collapse -->
+
       </nav>
 
       <div>
