@@ -7,7 +7,9 @@ class BookmarksController < ApplicationController
     else
       redirect to "/failure"
     end
+  end
 
-
+  get '/bookmarks/new' do
+    erb :'bookmarks/new'
   end
 end

@@ -8,6 +8,6 @@ class User < ActiveRecord::Base
   end
 
   has_many :bookmarks
-  has_many :tags
+  has_many :tags, through: :bookmarks
   has_many :lists
 end

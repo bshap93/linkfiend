@@ -24,19 +24,15 @@
           </button>
           <a class="navbar-brand" href="/" style="color:rgb(97,180,145); font-family: monospace; font-size: 2.5em; font-weight: bold">linkfiend</a>
         <% if logged_in? %>
-          <span class="greeting" style="color: rgb(97,180,145) ; font-family: monospace; font-size: 1em; position: fixed; top: 1em; right: 15em; ">Welcome, <%= current_user.username %></span>
+          <span class="greeting" style="color: rgb(97,180,145) ; font-family: monospace; font-size: 1em; position: fixed; top: 1.1em; right: 15em; font-weight:bold">Welcome, <%= current_user.username %></span>
         </div>
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
               <li>
-                <button type="button" class="btn btn-default btn-md">
-                  <a href="/my_bookmarks" style="color: rgb(97,180,145);font-family: monospace;font-size: 1em;">My Links</a>
-                </button>
+                <a href="/my_bookmarks" style="color: rgb(97,180,145);font-family: monospace;font-size: 1em; font-weight:bold">My Links</a>
               </li>
               <li>
-                <button type="button" class="btn btn-default btn-md">
-                  <span class="glyphicon glyphicon-flash" aria-hidden="true"><a class="navbarblue" href="/bookmarks/new" style="color: rgb(97,180,145);font-family: monospace;font-size: 1em; font-weight:bold"> New Link</a></span>
-                </button>
+                <a class="navbarblue" href="/bookmarks/new" style="color: rgb(97,180,145);font-family: monospace;font-size: 1em; font-weight:bold"> New Link</a>
               </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
