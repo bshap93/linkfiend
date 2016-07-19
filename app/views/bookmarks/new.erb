@@ -10,5 +10,15 @@
   <br>
   <label for="secret">Private Bookmark</label>
   <input type="checkbox" name="secret">
+  <br>
+  <label>Choose Existing Tags:   </label>
+  <% current_user.tags.each do |tag| %>
+    <input type="checkbox" name="bookmarks[tag_ids][]" value="<%= tag.id %>"><em> <%= tag.name %></em></input>
+  <% end %>
+  <label>And/Or create a new tag: </label>
+  <br>
+  <label>Name: </label>
+  <input type="text" name="tag[name]">
+  
 
 </form>
