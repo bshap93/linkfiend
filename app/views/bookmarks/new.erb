@@ -1,5 +1,5 @@
 <form method="POST" action="/bookmarks" class="well">
-  <label for="name">Name: </label>
+  <label class="bluelink" for="name">Name: </label>
   <input id="name" type="text" name="name" class="form-control">
   <br>
   <label for="link">URL: </label>
@@ -8,17 +8,21 @@
   <label for="description">Description: </label>
   <textarea name="description" class="form-control" id="" cols="30" rows="5"></textarea>
   <br>
-  <label for="secret">Private Bookmark</label>
-  <input type="checkbox" name="secret">
+  <hr>
+  <label for="secret">Private Bookmark: </label><input type="checkbox" name="secret">
   <br>
   <label>Choose Existing Tags:   </label>
   <% current_user.tags.each do |tag| %>
     <input type="checkbox" name="bookmarks[tag_ids][]" value="<%= tag.id %>"><em> <%= tag.name %></em></input>
   <% end %>
+  <br>
+  <hr>
   <label>And/Or create a new tag: </label>
   <br>
   <label>Name: </label>
   <input type="text" name="tag[name]">
-  
+  <hr>
+  <input type="submit" class="btn btn-default" value="Create New Link">
+
 
 </form>
