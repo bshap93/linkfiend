@@ -5,16 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-
+    <link rel="stylesheet" type="text/css" href="style.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
-  </head>
-  <body>
-    <div class="container">
 
       <!-- Static navbar -->
       <nav class="navbar navbar-default" role="navigation">
@@ -25,12 +22,22 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/" style="color:orange; font-family: monospace; font-size: 2.5em">linkfiend</a>
-        </div>
+          <a class="navbar-brand" href="/" style="color:rgb(97,180,145); font-family: monospace; font-size: 2.5em; font-weight: bold">linkfiend</a>
         <% if logged_in? %>
+          <span class="greeting" style="color: rgb(97,180,145) ; font-family: monospace; font-size: 1em; position: fixed; top: 1em; right: 15em; ">Welcome, <%= current_user.username %></span>
+        </div>
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-              <li><a href="/secure/place">Secret</a></li>
+              <li>
+                <button type="button" class="btn btn-default btn-md">
+                  <a href="/my_bookmarks" style="color: rgb(97,180,145);font-family: monospace;font-size: 1em;">My Links</a>
+                </button>
+              </li>
+              <li>
+                <button type="button" class="btn btn-default btn-md">
+                  <span class="glyphicon glyphicon-flash" aria-hidden="true"><a class="navbarblue" href="/bookmarks/new" style="color: rgb(97,180,145);font-family: monospace;font-size: 1em; font-weight:bold"> New Link</a></span>
+                </button>
+              </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">

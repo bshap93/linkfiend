@@ -1,0 +1,9 @@
+.bluelink {
+  color: rgb(97,180,145);font-family: monospace;font-size: 1em;
+}
+
+@media (max-width: 600px) {
+  .greeting {
+    display: none;
+  }
+}

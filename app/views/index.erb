@@ -1,16 +1,21 @@
 <h4>All Links</h4>
-<% @bookmarks.each do |bookmark| %>
-  <form method="POST" action="/bookmarks/:slug/edit" class="well">
-    <a href="<%= bookmark.link %>"><%= bookmark.name %></a>
-    <p>Created on <%= bookmark.created_at.to_s.split(" ")[0] %> by <a href="bookmarks/user/<%= bookmark.user.slug %>"><%= bookmark.user.username %></a></p>
-    <a class="btn btn-default" href="/bookmarks/<%= bookmark.slug %>/edit" role="button">Edit</a>
-    <a class="btn btn-default" href="/bookmarks/<%= bookmark.slug %>/delete" role="button">Delete</a>
-    <br>
-    <% if !bookmark.tags.empty? %>
-      <br><h5 style="display:inline">Tags</h5>
-      <% bookmark.tags.each do |tag| %>
-        <a href="tags/<%= tag.slug %>"><%= tag.name %></a>
+<% @bookmarks.reverse_each do |bookmark| %>
+  <% unless bookmark.secret %>  
+  
+    <form method="POST" action="/bookmarks/:slug/edit" class="well">
+      <a href="<%= bookmark.link %>"><%= bookmark.name %></a>
+      <p>Created on <%= bookmark.created_at.to_s.split(" ")[0] %> by <a href="bookmarks/user/<%= bookmark.user.slug %>"><%= bookmark.user.username %></a></p>
+      <% if bookmark.user == current_user %>
+        <a class="btn btn-default" href="/bookmarks/<%= bookmark.slug %>/edit" role="button">Edit</a>
+        <a class="btn btn-default" href="/bookmarks/<%= bookmark.slug %>/delete" role="button">Delete</a>
       <% end %>
-    <% end %>
-  </form>
+      <br>
+      <% if !bookmark.tags.empty? %>
+        <br><h5 style="display:inline">Tags</h5>
+        <% bookmark.tags.each do |tag| %>
+          <a href="tags/<%= tag.slug %>"><%= tag.name %></a>
+        <% end %>
+      <% end %>
+    </form>
+  <% end %>
 <% end %>

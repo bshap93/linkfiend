@@ -4,7 +4,7 @@ class NewBookmarks < ActiveRecord::Migration
       t.string :name
       t.string :link
       t.string :description
-      t.boolean :private
+      t.boolean :secret
     end
   end
 end
