@@ -108,6 +108,7 @@ DEPENDENCIES
   activerecord
   bcrypt
   capybara
+  nokogiri
   pry
   rack-flash3
   rack-test

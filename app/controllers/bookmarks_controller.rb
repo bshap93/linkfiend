@@ -1,5 +1,4 @@
-require 'sinatra/base'
-require 'rack-flash'
+
 class BookmarksController < ApplicationController
   enable :sessions
   use Rack::Flash
@@ -42,6 +41,12 @@ class BookmarksController < ApplicationController
     redirect to "/my_bookmarks"
   end
 
-
+  delete "/bookmarks/:slug/delete" do
+    @bookmark = Bookmark.find_by_slug(params[:slug])
+    binding.pry
+    @bookmark.delete
+    flash[:message] = "Successfully Deleted Bookmark!"
+    redirect to "/my_bookmarks"
+  end
 
 end

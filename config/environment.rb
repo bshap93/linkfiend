@@ -1,5 +1,6 @@
 require 'bundler/setup'
 Bundler.require
+require 'rack-flash'
 
 ENV['SINATRA_ENV'] ||= "development"
 
@@ -9,3 +10,5 @@ ActiveRecord::Base.establish_connection(
 )
 
 require_all 'app'
+require_all 'lib'
+require 'open-uri'
