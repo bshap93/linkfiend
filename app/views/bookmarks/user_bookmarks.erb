@@ -2,7 +2,7 @@
   <% if bookmark.user == current_user %>  
   
     <div class="well">
-      <a href="<%= bookmark.link %>"><%= bookmark.name %></a>
+      <a class="testing"> href="<%= bookmark.link %>"><%= bookmark.name %></a>
       <% if bookmark.secret %>
         <p style="color:red">Private</p>
       <% end %>
@@ -10,8 +10,7 @@
         <p><%= bookmark.description %></p>
       <% end %>
       <p>Created on <%= bookmark.created_at.to_s.split(" ")[0] %> by <a href="bookmarks/user/<%= bookmark.user.slug %>"><%= bookmark.user.username %></a></p>
-      <a class="btn btn-default" href="/bookmarks/<%= bookmark.slug %>/edit" role="button">Edit</a>
-      <%= link_to 'Delete', '/bookmarks/<%= bookmark.slug %>/delete', method: 'DELETE', style: 'margin: 0; padding: 0;', role: 'button' %>
+      <a class="btn btn-default" href="/bookmarks/<%= bookmark.slug %>/edit" role="button">Edit</a><form style="margin: 0;padding: 0;" method="post" action="/bookmarks/<%= bookmark.slug %>/delete" role="button" ><input id="hidden" type="hidden" name="_method" value="delete"><input style="display: inline;" type="submit" class="btn btn-default" value="Delete"></input></form>
       <br>
       <% if !bookmark.tags.empty? %>
         <br><h5 style="display:inline">Tags</h5>

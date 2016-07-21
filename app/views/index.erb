@@ -3,7 +3,7 @@
   <% unless bookmark.secret %>  
   
     <form method="POST" action="/bookmarks/:slug/edit" class="well">
-      <a href="<%= bookmark.link %>"><%= bookmark.name %></a>
+      <a class="testing" href="<%= bookmark.link %>"><%= bookmark.name %></a>
       <% if bookmark.description %>
         <p><%= bookmark.description %></p>
       <% end %>
