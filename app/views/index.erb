@@ -4,7 +4,7 @@
   
     <form method="POST" action="/bookmarks/:slug/edit" class="well">
       <a href="<%= bookmark.link %>"><%= bookmark.name %></a>
-      <p>Created on <%= bookmark.created_at.to_s.split(" ")[0] %> by <a href="bookmarks/user/<%= bookmark.user.slug %>"><%= bookmark.user.username %></a></p>
+      <p>Created on <%= bookmark.created_at.to_s.split(" ")[0] %><% if bookmark.user %> by <a href="bookmarks/user/<%= bookmark.user.slug %>"><%= bookmark.user.username %></a><% end %></p>
       <% if bookmark.user == current_user %>
         <a class="btn btn-default" href="/bookmarks/<%= bookmark.slug %>/edit" role="button">Edit</a>
         <a class="btn btn-default" href="/bookmarks/<%= bookmark.slug %>/delete" role="button">Delete</a>

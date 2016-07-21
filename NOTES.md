@@ -13,6 +13,11 @@ Models
 - Tag
   =Has many bookmarks
   =Has a user
+- List
+  =Has a user
+  =has many bookmarks
+
+
 
 
 Controllers

@@ -24,7 +24,7 @@
           </button>
           <a class="navbar-brand" href="/" style="color:rgb(97,180,145); font-family: monospace; font-size: 2.5em; font-weight: bold">linkfiend</a>
         <% if logged_in? %>
-          <span class="greeting" style="color: rgb(97,180,145) ; font-family: monospace; font-size: 1em; position: fixed; top: 1.1em; right: 15em; font-weight:bold">Welcome, <%= current_user.username %></span>
+          
         </div>
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -36,6 +36,18 @@
               </li>
               <li>
                 <a class="navbarblue" href="/" style="color: rgb(97,180,145);font-family: monospace;font-size: 1em; font-weight:bold"> All Links</a>
+              </li>
+              <li>
+                <a class="navbarblue" href="/lists/new" style="color: rgb(97,180,145);font-family: monospace;font-size: 1em; font-weight:bold"> New List</a>
+              </li>
+              <li>
+                <a class="navbarblue" href="/lists/my" style="color: rgb(97,180,145);font-family: monospace;font-size: 1em; font-weight:bold"> My Lists</a>
+              </li>
+              <li>
+                <a class="navbarblue" href="/lists" style="color: rgb(97,180,145);font-family: monospace;font-size: 1em; font-weight:bold"> All Lists</a>
+              </li>
+              <li>
+                <a class="greeting" style="color: rgb(97,180,145) ; font-family: monospace; font-size: 1em; font-weight:bold;"><u>Welcome, <%= current_user.username %></u></a>
               </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -60,6 +72,10 @@
             <%if @error then %>
                 <div class="alert alert-error"><%=@error%></div>
             <% end %>
+              <% if flash.has?(:message) %>
+                <%= flash[:message] %>
+              <% end %>
+
             <%= yield %>
       </div>
 
