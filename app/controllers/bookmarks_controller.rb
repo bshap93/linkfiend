@@ -22,6 +22,18 @@ class BookmarksController < ApplicationController
 
   post '/bookmarks' do
     @bookmark = Bookmark.new(name: params[:name])
+    if params[:link]
+      @bookmark.link = params[:link]
+    else
+      flash[:message] = "No link given"
+      redirect to "/failure"
+    end
+    if !params[:name].empty?
+      @bookmark.name = params[:name]
+    else
+      @bookmark.name = TitleScraper.new(@bookmark.link).title
+    end
+    binding.pry
     @bookmark.link = params[:link]
     @bookmark.description = params[:description]
     if params[:secret] == "on"
