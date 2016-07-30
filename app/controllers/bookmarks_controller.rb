@@ -43,7 +43,12 @@ class BookmarksController < ApplicationController
       @bookmark.name = TitleScraper.new(@bookmark.link).title
     end
     @bookmark.link = params[:link]
-    @bookmark.description = params[:description]
+    if !params[:description].empty?
+      @bookmark.description = params[:description]
+    else
+      @bookmark.description = DescriptionScraper.new(@bookmark.link).description
+    end
+      
     if params[:secret] == "on"
       @bookmark.secret = true
     end

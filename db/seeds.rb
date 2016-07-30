@@ -1,5 +1,4 @@
-u1 = User.find_by(username: "bshap93")
-u2 = User.create(username: "hellokitty007", password_digest: "kittyzrulz")
+
 
 b1 = Bookmark.create(name: "How to learn Emacs :: The very basics ", link: "http://david.rothlis.net/emacs/tutorial.html", user_id: 5)
 b2 = Bookmark.create(name: "The Rust Programming Language ", link: "http://doc.rust-lang.org/stable/book/", user_id: 5)

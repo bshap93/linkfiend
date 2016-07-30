@@ -4,7 +4,11 @@ class DescriptionScraper
   def initialize(link)
     @url = link
     @page = Nokogiri::HTML(open(@url))
-    @description = @page.at('meta[name="description"]')['content']
+    begin
+      @description = @page.at('meta[name="description"]')['content']
+    rescue
+      @description = nil
+    end
   end
 
 end
