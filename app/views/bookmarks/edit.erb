@@ -1,0 +1,30 @@
+<h5>Edit Your Link</h5>
+<form method="POST" action="/bookmarks/<%= @bookmark.slug %>/edit" class="well">
+  <input id="hidden" type="hidden" name="_method" value="patch">
+  <label class="bluelink" for="name">Name: </label>
+  <input id="name" type="text" name="name" class="form-control" value="<%= @bookmark.name %>">
+  <br>
+  <label for="link">URL: </label>
+  <input type="text" name="link" class="form-control" value="<%= @bookmark.link %>">
+  <br>
+  <label for="description">Description: </label>
+  <textarea name="description" class="form-control" id="" cols="30" rows="5"><%= @bookmark.description %></textarea>
+  <br>
+  <hr>
+  <label for="secret">Private Bookmark: </label><input type="checkbox" name="secret" <%= 'checked' if @bookmark.secret == true %>>
+  <br>
+  <label>Choose Existing Tags:   </label>
+  <% current_user.tags.each do |tag| %>
+    <input type="checkbox" name="bookmarks[tag_ids][]" value="<%= tag.id %>" <%= 'checked' if @bookmark.tags.include?(tag) %>><em> <%= tag.name %></em></input>
+  <% end %>
+  <br>
+  <hr>
+  <label>And/Or create a new tag: </label>
+  <br>
+  <label>Name: </label>
+  <input type="text" name="tag[name]">
+  <hr>
+  <input type="submit" class="btn btn-default" value="Create New Link">
+
+
+</form>

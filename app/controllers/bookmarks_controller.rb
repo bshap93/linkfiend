@@ -20,6 +20,16 @@ class BookmarksController < ApplicationController
     end  
   end
 
+  get "/bookmarks/:slug/edit" do
+    @bookmark = Bookmark.find_by_slug(params[:slug])
+    if @bookmark.user == current_user
+      erb :'bookmarks/edit'
+    else
+      flash[:message] = "You can only edit your own bookmarks"
+      redirect to "/failure"
+    end
+  end
+
   post '/bookmarks' do
     @bookmark = Bookmark.new(name: params[:name])
     if params[:link]
@@ -33,7 +43,6 @@ class BookmarksController < ApplicationController
     else
       @bookmark.name = TitleScraper.new(@bookmark.link).title
     end
-    binding.pry
     @bookmark.link = params[:link]
     @bookmark.description = params[:description]
     if params[:secret] == "on"
@@ -53,9 +62,42 @@ class BookmarksController < ApplicationController
     redirect to "/my_bookmarks"
   end
 
+  patch '/bookmarks/:slug/edit' do
+    @bookmark = Bookmark.find_by_slug(params[:slug])
+    if params[:link]
+      @bookmark.link = params[:link]
+    else
+      flash[:message] = "No link given"
+      redirect to "/failure"
+    end
+    if !params[:name].empty?
+      @bookmark.update(name: params[:name])
+    else
+      @bookmark.update(name: TitleScraper.new(@bookmark.link).title)
+    end
+    @bookmark.update(link: params[:link])
+    @bookmark.update(description: params[:description])
+    if params[:secret] == "on"
+      @bookmark.update(secret: true)
+    else
+      @bookmark.update(secret: false)
+    end
+    @bookmark.tags.clear
+    if params[:bookmarks]
+      params[:bookmarks][:tag_ids].each do |tag_id|
+        @bookmark.tags << Tag.find(tag_id)
+      end
+    end
+    if !params[:tag][:name].empty?
+      @bookmark.tags << Tag.create(name: params[:tag][:name])
+    end
+    @bookmark.save
+    flash[:message] = "Successfully Edited Bookmark!"
+    redirect to "/my_bookmarks"
+  end
+
   delete "/bookmarks/:slug/delete" do
     @bookmark = Bookmark.find_by_slug(params[:slug])
-    binding.pry
     @bookmark.delete
     flash[:message] = "Successfully Deleted Bookmark!"
     redirect to "/my_bookmarks"
