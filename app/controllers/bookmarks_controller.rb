@@ -1,7 +1,6 @@
 
 class BookmarksController < ApplicationController
-  enable :sessions
-  use Rack::Flash
+
 
   get '/my_bookmarks' do
     @user = current_user

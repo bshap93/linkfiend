@@ -2,7 +2,7 @@
 <% @bookmarks.reverse_each do |bookmark| %>
   <% unless bookmark.secret %>  
   
-    <form method="POST" action="/bookmarks/:slug/edit" class="well">
+    <div class="well">
       <a href="<%= bookmark.link %>"><%= bookmark.name %></a>
       <% if bookmark.description %>
         <p><%= bookmark.description %></p>
@@ -10,7 +10,7 @@
       <p>Created on <%= bookmark.created_at.to_s.split(" ")[0] %><% if bookmark.user %> by <a href="bookmarks/user/<%= bookmark.user.slug %>"><%= bookmark.user.username %></a><% end %></p>
       <% if bookmark.user == current_user %>
         <a class="btn btn-default" href="/bookmarks/<%= bookmark.slug %>/edit" role="button">Edit</a>
-        <a class="btn btn-default" href="/bookmarks/<%= bookmark.slug %>/delete" role="button">Delete</a>
+        <form style="margin: 0;padding: 0;" method="post" action="/bookmarks/<%= bookmark.slug %>/delete" role="button" ><input id="hidden" type="hidden" name="_method" value="delete"><input style="display: inline;" type="submit" class="btn btn-default" value="Delete"></input></form>
       <% end %>
       <% if !bookmark.tags.empty? %>
         <br><h5 style="display:inline">Tags</h5>
@@ -18,6 +18,6 @@
           <a href="tags/<%= tag.slug %>"><%= tag.name %></a>
         <% end %>
       <% end %>
-    </form>
+    </div>
   <% end %>
 <% end %>
