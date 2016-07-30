@@ -1,0 +1,12 @@
+<h2 class="well">All Lists</h2>
+<% List.all.each do |list| %>
+  <hr>
+  <div class="well"><h5><a href="/lists/<%= list.slug %>"><%= list.name %></a> created by <%= list.user.username %></h5>
+  <h6><%= list.bookmarks.length %> bookmarks in this list.</h6>
+  <% if list.user == current_user %>
+    <a href="/list/<%= list.slug %>/edit">Edit List</a>
+  <% end %>
+  </div>
+
+
+<% end %>

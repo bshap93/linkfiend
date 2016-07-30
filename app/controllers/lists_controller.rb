@@ -1,8 +1,40 @@
 class ListsController < ApplicationController
-  enable :sessions
-  use Rack::Flash
+
 
   get '/lists/new' do
-    erb :'lists/new'
+    if logged_in?
+      erb :'lists/new'
+    else
+      redirect to "/login"
+    end
   end
+
+  post '/lists' do
+    @list = List.new(name: params[:name], user: current_user)
+    if params[:user]
+      params[:user][:bookmark_ids].each do |bookmark_id|
+        @list.bookmarks << Bookmark.find(bookmark_id)
+      end
+    end
+    @list.save
+    redirect to "/lists"
+  end
+
+  get '/lists' do
+    if logged_in?
+      erb :'lists/index'
+    else
+      redirect to "/login"
+    end
+    
+  end
+
+  get '/lists/my' do
+    if logged_in?
+      erb :'lists/my_lists'
+    else
+      redirect to "/login"
+    end
+  end
+  
 end
