@@ -1,0 +1,15 @@
+<h3>Edit List</h3>
+<form method="POST" action="/lists/<%= @list.slug %>/edit" class="well">
+  <input type="hidden" id="hidden" name="_method" value="patch">
+  <label class="bluelink" for="name">Name: </label>
+  <input id="name" type="text" name="name" class="form-control" value="<%= @list.name %>">
+  <br>
+  <label>Choose Existing Bookmarks:   </label>
+  <% current_user.bookmarks.each do |bookmark| %>
+    <input type="checkbox" name="user[bookmark_ids][]" value="<%= bookmark.id %>" <%= 'checked' if @list.bookmarks.include?(bookmark) %>><em> <%= bookmark.name %></em></input>
+  <% end %>
+  <br>
+  <hr>
+  <input type="submit" class="btn btn-default" value="Edit List">
+
+</form>

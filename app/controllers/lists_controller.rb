@@ -10,14 +10,19 @@ class ListsController < ApplicationController
   end
 
   post '/lists' do
-    @list = List.new(name: params[:name], user: current_user)
-    if params[:user]
-      params[:user][:bookmark_ids].each do |bookmark_id|
-        @list.bookmarks << Bookmark.find(bookmark_id)
+    if !params[:name].empty?
+      @list = List.new(name: params[:name], user: current_user)
+      if params[:user]
+        params[:user][:bookmark_ids].each do |bookmark_id|
+          @list.bookmarks << Bookmark.find(bookmark_id)
+        end
       end
+      @list.save
+      redirect to "/lists"
+    else
+      flash[:message] = "No name given to list"
+      redirect to "/failure"
     end
-    @list.save
-    redirect to "/lists"
   end
 
   get '/lists' do
@@ -45,7 +50,33 @@ class ListsController < ApplicationController
       redirect to "/login"
     end
   end
-    
+
+  get '/lists/:slug/edit' do
+    if logged_in?
+      @list = List.find_by_slug(params[:slug])
+      erb :'lists/edit'
+    else
+      redirect to "/login"
+    end
+  end    
+
+  patch '/lists/:slug/edit' do
+    if !params[:name].empty?
+      @list = List.find_by_slug(params[:slug])
+      @list.update(name: params[:name])
+      @list.bookmarks.clear
+      if params[:user]
+        params[:user][:bookmark_ids].each do |bookmark_id|
+          @list.bookmarks << Bookmark.find(bookmark_id)
+        end
+      end
+      @list.save
+      redirect to "/lists"
+    else
+      flash[:message] = "No name given to list"
+      redirect to "/failure"
+    end
+  end
     
 
 
