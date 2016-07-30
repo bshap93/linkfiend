@@ -36,5 +36,17 @@ class ListsController < ApplicationController
       redirect to "/login"
     end
   end
-  
+
+  get '/lists/:slug' do
+    if logged_in?
+      @list = List.find_by_slug(params[:slug])
+      erb :'lists/show'
+    else
+      redirect to "/login"
+    end
+  end
+    
+    
+
+
 end
