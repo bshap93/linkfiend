@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    <link href="<%= url('/style.css') %>" rel="stylesheet" type="text/css" />
+    <link href="/style.css" rel="stylesheet" type="text/css" />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -22,7 +22,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/" class="testing" style="font-family: monospace; font-size: 2.5em; font-weight: bold">linkfiend</a>
+          <a class="navbar-brand" href="/" style="color:rgb(97,180,145); font-family: monospace; font-size: 2.5em; font-weight: bold">linkfiend</a>
         <% if logged_in? %>
           
         </div>
@@ -32,19 +32,19 @@
                 <a href="/my_bookmarks" style="color: rgb(97,180,145);font-family: monospace;font-size: 1em; font-weight:bold">My Links</a>
               </li>
               <li>
-                <a class="navbarblue" href="/bookmarks/new" style="color: rgb(97,180,145);font-family: monospace;font-size: 1em; font-weight:bold"> New Link</a>
+                <a class="bluelink" href="/bookmarks/new" style="color: rgb(97,180,145);font-family: monospace;font-size: 1em; font-weight:bold"> New Link</a>
               </li>
               <li>
-                <a class="navbarblue" href="/" style="color: rgb(97,180,145);font-family: monospace;font-size: 1em; font-weight:bold"> All Links</a>
+                <a class="bluelink" href="/" style="color: rgb(97,180,145);font-family: monospace;font-size: 1em; font-weight:bold"> All Links</a>
               </li>
               <li>
-                <a class="navbarblue" href="/lists/new" style="color: rgb(97,180,145);font-family: monospace;font-size: 1em; font-weight:bold"> New List</a>
+                <a class="bluelink" href="/lists/new" style="color: rgb(97,180,145);font-family: monospace;font-size: 1em; font-weight:bold"> New List</a>
               </li>
               <li>
-                <a class="navbarblue" href="/lists/my" style="color: rgb(97,180,145);font-family: monospace;font-size: 1em; font-weight:bold"> My Lists</a>
+                <a class="bluelink" href="/lists/my" style="color: rgb(97,180,145);font-family: monospace;font-size: 1em; font-weight:bold"> My Lists</a>
               </li>
               <li>
-                <a class="navbarblue" href="/lists" style="color: rgb(97,180,145);font-family: monospace;font-size: 1em; font-weight:bold"> All Lists</a>
+                <a class="bluelink" href="/lists" style="color: rgb(97,180,145);font-family: monospace;font-size: 1em; font-weight:bold"> All Lists</a>
               </li>
               <li>
                 <a class="greeting" style="color: rgb(97,180,145) ; font-family: monospace; font-size: 1em; font-weight:bold;"><u>Welcome, <%= current_user.username %></u></a>

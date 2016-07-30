@@ -2,7 +2,7 @@
   <% if bookmark.user == current_user %>  
   
     <div class="well">
-      <a class="testing"> href="<%= bookmark.link %>"><%= bookmark.name %></a>
+      <a href="<%= bookmark.link %>"><%= bookmark.name %></a>
       <% if bookmark.secret %>
         <p style="color:red">Private</p>
       <% end %>

@@ -3,9 +3,9 @@
   <% unless bookmark.secret %>  
   
     <form method="POST" action="/bookmarks/:slug/edit" class="well">
-      <a class="testing" href="<%= bookmark.link %>"><%= bookmark.name %></a>
+      <a href="<%= bookmark.link %>"><%= bookmark.name %></a>
       <% if bookmark.description %>
-        <p class="testing"><%= bookmark.description %></p>
+        <p><%= bookmark.description %></p>
       <% end %>
       <p>Created on <%= bookmark.created_at.to_s.split(" ")[0] %><% if bookmark.user %> by <a href="bookmarks/user/<%= bookmark.user.slug %>"><%= bookmark.user.username %></a><% end %></p>
       <% if bookmark.user == current_user %>
