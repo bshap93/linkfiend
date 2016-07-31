@@ -9,9 +9,10 @@
       <% end %>
       <p>Created on <%= bookmark.created_at.to_s.split(" ")[0] %><% if bookmark.user %> by <a href="bookmarks/user/<%= bookmark.user.slug %>"><%= bookmark.user.username %></a><% end %></p>
       <% if bookmark.user == current_user %>
-        <a class="btn btn-default" href="/bookmarks/<%= bookmark.slug %>/edit" role="button">Edit</a>
-        <form style="margin: 0;padding: 0;" method="post" action="/bookmarks/<%= bookmark.slug %>/delete" role="button" ><input id="hidden" type="hidden" name="_method" value="delete"><input style="display: inline;" type="submit" class="btn btn-default" value="Delete"></input></form>
+        <a class="btn btn-default" style ='float: left;' href="/bookmarks/<%= bookmark.slug %>/edit" role="button">Edit</a>
+        <form style ='float: left;' method="post" action="/bookmarks/<%= bookmark.slug %>/delete" role="button" ><input id="hidden" type="hidden" name="_method" value="delete"><input type="submit" class="btn btn-default" value="Delete"></input></form>
       <% end %>
+      <br>
       <% if !bookmark.tags.empty? %>
         <br><h5 style="display:inline">Tags</h5>
         <% bookmark.tags.each do |tag| %>
