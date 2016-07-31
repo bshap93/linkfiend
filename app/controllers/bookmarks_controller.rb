@@ -63,7 +63,13 @@ class BookmarksController < ApplicationController
     @bookmark.user = current_user
     @bookmark.save
     flash[:message] = "Successfully Created Bookmark!"
-    redirect to "/my_bookmarks"
+    if session[:from_list] == "new"
+      redirect to "/lists/new"
+    elsif session[:from_list]
+      redirect to "/lists/#{session[:from_list]}/edit"
+    else
+      redirect to "/my_bookmarks"
+    end
   end
 
   patch '/bookmarks/:slug/edit' do

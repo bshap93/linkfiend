@@ -2,6 +2,13 @@ class ListsController < ApplicationController
 
 
   get '/lists/new' do
+
+    if !session[:from_list]
+      session[:from_list] = "new"
+    else
+      session[:from_list] = nil
+    end
+    session[:from_list] = "new"
     if logged_in?
       erb :'lists/new'
     else
@@ -52,6 +59,11 @@ class ListsController < ApplicationController
   end
 
   get '/lists/:slug/edit' do
+    if !session[:from_list]
+      session[:from_list] = params[:slug]
+    else
+      session[:from_list] = nil
+    end
     if logged_in?
       @list = List.find_by_slug(params[:slug])
       erb :'lists/edit'
