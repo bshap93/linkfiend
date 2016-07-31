@@ -4,12 +4,8 @@
   }
 }
 
-.bluelink {
+span.bluelink {
   color: rgb(97,180,145);
   font-family: monospace;
   font-size: 1em;
 }
-.testing {
-  color: green;
-}
-
