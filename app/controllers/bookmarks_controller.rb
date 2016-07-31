@@ -88,7 +88,7 @@ class BookmarksController < ApplicationController
     end
     @bookmark.tags.clear
     if params[:bookmarks]
-      params[:bookmarks][:tag_ids].each do |tag_id|
+      params[:bookmarks][:tag_ids].uniq.each do |tag_id|
         @bookmark.tags << Tag.find(tag_id)
       end
     end

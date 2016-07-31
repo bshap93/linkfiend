@@ -14,7 +14,7 @@
   <label for="secret">Private Bookmark: </label><input type="checkbox" name="secret" <%= 'checked' if @bookmark.secret == true %>>
   <br>
   <label>Choose Existing Tags:   </label>
-  <% current_user.tags.each do |tag| %>
+  <% current_user.tags.uniq.each do |tag| %>
     <input type="checkbox" name="bookmarks[tag_ids][]" value="<%= tag.id %>" <%= 'checked' if @bookmark.tags.include?(tag) %>><em> <%= tag.name %></em></input>
   <% end %>
   <br>
