@@ -15,7 +15,7 @@
       <% if !bookmark.tags.empty? %>
         <br><h5 style="display:inline">Tags</h5>
         <% bookmark.tags.each do |tag| %>
-          <a href="tags/<%= tag.slug %>"><%= tag.name %></a>
+          <a href="/bookmarks/tags/<%= tag.slug %>"><%= tag.name %></a>
         <% end %>
       <% end %>
     </div>

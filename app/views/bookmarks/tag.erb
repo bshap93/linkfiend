@@ -1,0 +1,24 @@
+<% Bookmark.all.reverse_each do |bookmark| %>
+  <% if bookmark.tags.include?(@tag) %>
+    <% unless bookmark.secret %>
+    
+      <div class="well">
+        <a href="<%= bookmark.link %>"><%= bookmark.name %></a>
+        <% if bookmark.description %>
+          <p><%= bookmark.description %></p>
+        <% end %>
+        <p>Created on <%= bookmark.created_at.to_s.split(" ")[0] %><% if bookmark.user %> by <a href="bookmarks/user/<%= bookmark.user.slug %>"><%= bookmark.user.username %></a><% end %></p>
+        <% if bookmark.user == current_user %>
+          <a class="btn btn-default" href="/bookmarks/<%= bookmark.slug %>/edit" role="button">Edit</a>
+          <form style="margin: 0;padding: 0;" method="post" action="/bookmarks/<%= bookmark.slug %>/delete" role="button" ><input id="hidden" type="hidden" name="_method" value="delete"><input style="display: inline;" type="submit" class="btn btn-default" value="Delete"></input></form>
+        <% end %>
+        <% if !bookmark.tags.empty? %>
+          <br><h5 style="display:inline">Tags</h5>
+          <% bookmark.tags.each do |tag| %>
+            <a href="/bookmarks/tags/<%= tag.slug %>"><%= tag.name %></a>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>

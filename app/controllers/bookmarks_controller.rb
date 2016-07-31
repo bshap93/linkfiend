@@ -7,7 +7,7 @@ class BookmarksController < ApplicationController
     if logged_in?
       erb :'bookmarks/user_bookmarks'
     else
-      redirect to "/failure"
+      redirect to "/login"
     end
   end
 
@@ -15,7 +15,7 @@ class BookmarksController < ApplicationController
     if logged_in?
       erb :'bookmarks/new'
     else
-      redirect to "/failure"
+      redirect to "/login"
     end  
   end
 
@@ -93,7 +93,7 @@ class BookmarksController < ApplicationController
       end
     end
     if !params[:tag][:name].empty?
-      @bookmark.tags << Tag.create(name: params[:tag][:name])
+      @bookmark.tags << Tag.find_or_create_by(name: params[:tag][:name])
     end
     @bookmark.save
     flash[:message] = "Successfully Edited Bookmark!"
@@ -105,6 +105,15 @@ class BookmarksController < ApplicationController
     @bookmark.delete
     flash[:message] = "Successfully Deleted Bookmark!"
     redirect to "/my_bookmarks"
+  end
+
+  get "/bookmarks/tags/:slug" do 
+    if logged_in?
+      @tag = Tag.find_by_slug(params[:slug])
+      erb :'bookmarks/tag'
+    else 
+      redirect to "/login"
+    end
   end
 
 end
