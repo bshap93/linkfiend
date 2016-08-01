@@ -18,7 +18,7 @@ class ApplicationController < Sinatra::Base
       @bookmarks = Bookmark.all
       erb :index
     else
-      redirect to "/login"
+      File.read(File.join('public', 'cover.htm'))
     end
   end
 
