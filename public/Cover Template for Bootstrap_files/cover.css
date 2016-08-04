@@ -23,9 +23,7 @@ a:hover {
 /*
  * Base structure
  */
-body#asanoha {
-  background: url("asanoha-400px.png");
-}
+
 html,
 body {
   height: 100%;

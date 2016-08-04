@@ -10,4 +10,6 @@ span.bluelink {
   font-size: 1em;
 }
 
-
+body#asanoha {
+  background: url("asanoha-400px.png");
+}
