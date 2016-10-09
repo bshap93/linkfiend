@@ -1,3 +1,6 @@
+require 'sinatra'
+require 'sinatra/activerecord'
+require './config/environments' #database configuration
 class ApplicationController < Sinatra::Base
 
   enable :sessions
