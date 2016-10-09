@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20160721001817) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "bookmark_lists", force: :cascade do |t|
     t.integer "bookmark_id"
     t.integer "list_id"

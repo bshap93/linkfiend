@@ -17,3 +17,5 @@ gem 'bcrypt'
 gem 'nokogiri'
 gem 'pg'
 gem "tux"
+gem "data_mapper"
+gem "dm-postgres-adapter"
