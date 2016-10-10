@@ -15,7 +15,13 @@ gem 'capybara'
 gem 'require_all'
 gem 'bcrypt'
 gem 'nokogiri'
-gem 'pg'
+group :production do
+  gem "pg"
+end
+
+group :development, :test do
+  gem "sqlite3"
+end
 gem "tux"
 gem "data_mapper"
 gem "dm-postgres-adapter"

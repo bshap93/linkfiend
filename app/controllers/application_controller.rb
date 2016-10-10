@@ -1,4 +1,3 @@
-
 class ApplicationController < Sinatra::Base
 
   enable :sessions

@@ -13,8 +13,8 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
   <body>
-    
-  
+
+
       <!-- Static navbar -->
       <nav class="navbar navbar-default" role="navigation">
         <div class="navbar-header">
@@ -26,7 +26,7 @@
           </button>
           <a class="navbar-brand" href="/" style="color:rgb(97,180,145); font-family: monospace; font-size: 2.5em; font-weight: bold">linkfiend</a>
         <% if logged_in? %>
-          
+
         </div>
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -52,7 +52,10 @@
                 <a href="/logout"> <span style="font-weight:bold" class="bluelink">Logout</span></a>
               </li>
               <li>
-                <a class="greeting"><span style="font-weight:bold" class="bluelink"><u>Welcome, <%= current_user.username %></span></u></a>
+                <% if User.any? %>
+                  <a class="greeting"><span style="font-weight:bold" class="bluelink"><u>Welcome, <%= current_user.username %></span></u></a>
+                <% end %>
+
               </li>
             </ul>
 

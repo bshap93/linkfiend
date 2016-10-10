@@ -1,5 +1,5 @@
 require './config/environments'
-require './app'
+require_all './app'
 
 use Rack::Static, :urls => ['/css'], :root => 'public'
 
